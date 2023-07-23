@@ -9,7 +9,7 @@ import { ExtractJwt, Strategy } from 'passport-jwt';
 import { jwtConstants } from 'src/constants';
 import { IAuthService } from 'src/domain/services/interfaces/auth.service.interface';
 import { JwtPayload } from './jwt-payload';
-import { IsUUID, isUUID } from 'class-validator';
+import { isUUID } from 'class-validator';
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {

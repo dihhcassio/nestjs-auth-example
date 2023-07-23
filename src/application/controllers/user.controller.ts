@@ -5,7 +5,6 @@ import {
   HttpException,
   HttpStatus,
   Inject,
-  ParseUUIDPipe,
   Post,
   Put,
   Query,
