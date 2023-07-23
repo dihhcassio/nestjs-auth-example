@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  mysql_licitare:
+    image: mysql:5.7
+    container_name: mysql_licitare
+    environment:
+      MYSQL_DATABASE: 'licitare-api'
+      MYSQL_ROOT_PASSWORD: 'root123'
+    ports:
+      - '3306:3306'
+    networks:
+      - app-network
+    volumes:
+      - mysql-db:/var/lib/mysql
+
+  licitare-api:
+    container_name: licitare-api
+    build:
+      context: .
+      target: development
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - 3000:3000
+    command: npm run start:dev
+    networks:
+      - app-network
+    depends_on:
+      - mysql_licitare
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  mysql-db:
